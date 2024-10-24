@@ -22,10 +22,15 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StreamWeaverBrokerClient interface {
+	// Create a new stream
 	CreateStream(ctx context.Context, in *CreateStreamRequest, opts ...grpc.CallOption) (*CreateStreamResponse, error)
+	// Get a stream by name
 	GetStream(ctx context.Context, in *GetStreamRequest, opts ...grpc.CallOption) (*GetStreamResponse, error)
+	// Create a new consumer group
 	CreateConsumerGroup(ctx context.Context, in *CreateConsumerGroupRequest, opts ...grpc.CallOption) (*CreateConsumerGroupResponse, error)
+	// Add a consumer to a consumer group
 	AddConsumer(ctx context.Context, in *AddConsumerRequest, opts ...grpc.CallOption) (*AddConsumerResponse, error)
+	// List consumer groups for a stream
 	ListConsumerGroups(ctx context.Context, in *ListConsumerGroupsRequest, opts ...grpc.CallOption) (*ListConsumerGroupsResponse, error)
 }
 
@@ -86,10 +91,15 @@ func (c *streamWeaverBrokerClient) ListConsumerGroups(ctx context.Context, in *L
 // All implementations must embed UnimplementedStreamWeaverBrokerServer
 // for forward compatibility
 type StreamWeaverBrokerServer interface {
+	// Create a new stream
 	CreateStream(context.Context, *CreateStreamRequest) (*CreateStreamResponse, error)
+	// Get a stream by name
 	GetStream(context.Context, *GetStreamRequest) (*GetStreamResponse, error)
+	// Create a new consumer group
 	CreateConsumerGroup(context.Context, *CreateConsumerGroupRequest) (*CreateConsumerGroupResponse, error)
+	// Add a consumer to a consumer group
 	AddConsumer(context.Context, *AddConsumerRequest) (*AddConsumerResponse, error)
+	// List consumer groups for a stream
 	ListConsumerGroups(context.Context, *ListConsumerGroupsRequest) (*ListConsumerGroupsResponse, error)
 	mustEmbedUnimplementedStreamWeaverBrokerServer()
 }
