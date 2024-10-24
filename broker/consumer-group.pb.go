@@ -75,6 +75,69 @@ func (x *CreateConsumerGroupRequest) GetStreamName() string {
 	return ""
 }
 
+type AddConsumerRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ConsumerGroupName string `protobuf:"bytes,1,opt,name=consumer_group_name,json=consumerGroupName,proto3" json:"consumer_group_name,omitempty"`
+	ConsumerName      string `protobuf:"bytes,2,opt,name=consumer_name,json=consumerName,proto3" json:"consumer_name,omitempty"`
+	StreamName        string `protobuf:"bytes,3,opt,name=stream_name,json=streamName,proto3" json:"stream_name,omitempty"`
+}
+
+func (x *AddConsumerRequest) Reset() {
+	*x = AddConsumerRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_consumer_group_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddConsumerRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddConsumerRequest) ProtoMessage() {}
+
+func (x *AddConsumerRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_consumer_group_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddConsumerRequest.ProtoReflect.Descriptor instead.
+func (*AddConsumerRequest) Descriptor() ([]byte, []int) {
+	return file_consumer_group_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *AddConsumerRequest) GetConsumerGroupName() string {
+	if x != nil {
+		return x.ConsumerGroupName
+	}
+	return ""
+}
+
+func (x *AddConsumerRequest) GetConsumerName() string {
+	if x != nil {
+		return x.ConsumerName
+	}
+	return ""
+}
+
+func (x *AddConsumerRequest) GetStreamName() string {
+	if x != nil {
+		return x.StreamName
+	}
+	return ""
+}
+
 type ListConsumerGroupsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -86,7 +149,7 @@ type ListConsumerGroupsRequest struct {
 func (x *ListConsumerGroupsRequest) Reset() {
 	*x = ListConsumerGroupsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_consumer_group_proto_msgTypes[1]
+		mi := &file_consumer_group_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -99,7 +162,7 @@ func (x *ListConsumerGroupsRequest) String() string {
 func (*ListConsumerGroupsRequest) ProtoMessage() {}
 
 func (x *ListConsumerGroupsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_consumer_group_proto_msgTypes[1]
+	mi := &file_consumer_group_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112,7 +175,7 @@ func (x *ListConsumerGroupsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListConsumerGroupsRequest.ProtoReflect.Descriptor instead.
 func (*ListConsumerGroupsRequest) Descriptor() ([]byte, []int) {
-	return file_consumer_group_proto_rawDescGZIP(), []int{1}
+	return file_consumer_group_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ListConsumerGroupsRequest) GetStreamName() string {
@@ -131,7 +194,7 @@ type CreateConsumerGroupResponse struct {
 func (x *CreateConsumerGroupResponse) Reset() {
 	*x = CreateConsumerGroupResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_consumer_group_proto_msgTypes[2]
+		mi := &file_consumer_group_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -144,7 +207,7 @@ func (x *CreateConsumerGroupResponse) String() string {
 func (*CreateConsumerGroupResponse) ProtoMessage() {}
 
 func (x *CreateConsumerGroupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_consumer_group_proto_msgTypes[2]
+	mi := &file_consumer_group_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -157,7 +220,54 @@ func (x *CreateConsumerGroupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateConsumerGroupResponse.ProtoReflect.Descriptor instead.
 func (*CreateConsumerGroupResponse) Descriptor() ([]byte, []int) {
-	return file_consumer_group_proto_rawDescGZIP(), []int{2}
+	return file_consumer_group_proto_rawDescGZIP(), []int{3}
+}
+
+type AddConsumerResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+}
+
+func (x *AddConsumerResponse) Reset() {
+	*x = AddConsumerResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_consumer_group_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddConsumerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddConsumerResponse) ProtoMessage() {}
+
+func (x *AddConsumerResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_consumer_group_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddConsumerResponse.ProtoReflect.Descriptor instead.
+func (*AddConsumerResponse) Descriptor() ([]byte, []int) {
+	return file_consumer_group_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *AddConsumerResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
 }
 
 type ListConsumerGroupsResponse struct {
@@ -169,7 +279,7 @@ type ListConsumerGroupsResponse struct {
 func (x *ListConsumerGroupsResponse) Reset() {
 	*x = ListConsumerGroupsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_consumer_group_proto_msgTypes[3]
+		mi := &file_consumer_group_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -182,7 +292,7 @@ func (x *ListConsumerGroupsResponse) String() string {
 func (*ListConsumerGroupsResponse) ProtoMessage() {}
 
 func (x *ListConsumerGroupsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_consumer_group_proto_msgTypes[3]
+	mi := &file_consumer_group_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -195,7 +305,7 @@ func (x *ListConsumerGroupsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListConsumerGroupsResponse.ProtoReflect.Descriptor instead.
 func (*ListConsumerGroupsResponse) Descriptor() ([]byte, []int) {
-	return file_consumer_group_proto_rawDescGZIP(), []int{3}
+	return file_consumer_group_proto_rawDescGZIP(), []int{5}
 }
 
 var File_consumer_group_proto protoreflect.FileDescriptor
@@ -208,18 +318,29 @@ var file_consumer_group_proto_rawDesc = []byte{
 	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
 	0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18,
 	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4e, 0x61, 0x6d,
-	0x65, 0x22, 0x3c, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65,
-	0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1f,
-	0x0a, 0x0b, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4e, 0x61, 0x6d, 0x65, 0x22,
-	0x1d, 0x0a, 0x1b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65,
-	0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1c,
-	0x0a, 0x1a, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x47, 0x72,
-	0x6f, 0x75, 0x70, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x2c, 0x5a, 0x2a,
-	0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x74, 0x72, 0x65, 0x61,
-	0x6d, 0x77, 0x65, 0x61, 0x76, 0x65, 0x72, 0x69, 0x6f, 0x2f, 0x67, 0x6f, 0x2d, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x73, 0x2f, 0x62, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x65, 0x22, 0x8a, 0x01, 0x0a, 0x12, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65,
+	0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2e, 0x0a, 0x13, 0x63, 0x6f, 0x6e, 0x73,
+	0x75, 0x6d, 0x65, 0x72, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x11, 0x63, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x47,
+	0x72, 0x6f, 0x75, 0x70, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x23, 0x0a, 0x0d, 0x63, 0x6f, 0x6e, 0x73,
+	0x75, 0x6d, 0x65, 0x72, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0c, 0x63, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1f, 0x0a,
+	0x0b, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0a, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x3c,
+	0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x47, 0x72,
+	0x6f, 0x75, 0x70, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x73,
+	0x74, 0x72, 0x65, 0x61, 0x6d, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0a, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x1d, 0x0a, 0x1b,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x47, 0x72,
+	0x6f, 0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2d, 0x0a, 0x13, 0x41,
+	0x64, 0x64, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x1c, 0x0a, 0x1a, 0x4c, 0x69,
+	0x73, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x2c, 0x5a, 0x2a, 0x67, 0x69, 0x74, 0x68,
+	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x77, 0x65, 0x61,
+	0x76, 0x65, 0x72, 0x69, 0x6f, 0x2f, 0x67, 0x6f, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73, 0x2f,
+	0x62, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -234,12 +355,14 @@ func file_consumer_group_proto_rawDescGZIP() []byte {
 	return file_consumer_group_proto_rawDescData
 }
 
-var file_consumer_group_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_consumer_group_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_consumer_group_proto_goTypes = []interface{}{
 	(*CreateConsumerGroupRequest)(nil),  // 0: broker.CreateConsumerGroupRequest
-	(*ListConsumerGroupsRequest)(nil),   // 1: broker.ListConsumerGroupsRequest
-	(*CreateConsumerGroupResponse)(nil), // 2: broker.CreateConsumerGroupResponse
-	(*ListConsumerGroupsResponse)(nil),  // 3: broker.ListConsumerGroupsResponse
+	(*AddConsumerRequest)(nil),          // 1: broker.AddConsumerRequest
+	(*ListConsumerGroupsRequest)(nil),   // 2: broker.ListConsumerGroupsRequest
+	(*CreateConsumerGroupResponse)(nil), // 3: broker.CreateConsumerGroupResponse
+	(*AddConsumerResponse)(nil),         // 4: broker.AddConsumerResponse
+	(*ListConsumerGroupsResponse)(nil),  // 5: broker.ListConsumerGroupsResponse
 }
 var file_consumer_group_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -268,7 +391,7 @@ func file_consumer_group_proto_init() {
 			}
 		}
 		file_consumer_group_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListConsumerGroupsRequest); i {
+			switch v := v.(*AddConsumerRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -280,7 +403,7 @@ func file_consumer_group_proto_init() {
 			}
 		}
 		file_consumer_group_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateConsumerGroupResponse); i {
+			switch v := v.(*ListConsumerGroupsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -292,6 +415,30 @@ func file_consumer_group_proto_init() {
 			}
 		}
 		file_consumer_group_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateConsumerGroupResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_consumer_group_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddConsumerResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_consumer_group_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListConsumerGroupsResponse); i {
 			case 0:
 				return &v.state
@@ -310,7 +457,7 @@ func file_consumer_group_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_consumer_group_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

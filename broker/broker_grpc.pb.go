@@ -25,6 +25,7 @@ type StreamWeaverBrokerClient interface {
 	CreateStream(ctx context.Context, in *CreateStreamRequest, opts ...grpc.CallOption) (*CreateStreamResponse, error)
 	GetStream(ctx context.Context, in *GetStreamRequest, opts ...grpc.CallOption) (*GetStreamResponse, error)
 	CreateConsumerGroup(ctx context.Context, in *CreateConsumerGroupRequest, opts ...grpc.CallOption) (*CreateConsumerGroupResponse, error)
+	AddConsumer(ctx context.Context, in *AddConsumerRequest, opts ...grpc.CallOption) (*AddConsumerResponse, error)
 	ListConsumerGroups(ctx context.Context, in *ListConsumerGroupsRequest, opts ...grpc.CallOption) (*ListConsumerGroupsResponse, error)
 }
 
@@ -63,6 +64,15 @@ func (c *streamWeaverBrokerClient) CreateConsumerGroup(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *streamWeaverBrokerClient) AddConsumer(ctx context.Context, in *AddConsumerRequest, opts ...grpc.CallOption) (*AddConsumerResponse, error) {
+	out := new(AddConsumerResponse)
+	err := c.cc.Invoke(ctx, "/broker.StreamWeaverBroker/AddConsumer", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *streamWeaverBrokerClient) ListConsumerGroups(ctx context.Context, in *ListConsumerGroupsRequest, opts ...grpc.CallOption) (*ListConsumerGroupsResponse, error) {
 	out := new(ListConsumerGroupsResponse)
 	err := c.cc.Invoke(ctx, "/broker.StreamWeaverBroker/ListConsumerGroups", in, out, opts...)
@@ -79,6 +89,7 @@ type StreamWeaverBrokerServer interface {
 	CreateStream(context.Context, *CreateStreamRequest) (*CreateStreamResponse, error)
 	GetStream(context.Context, *GetStreamRequest) (*GetStreamResponse, error)
 	CreateConsumerGroup(context.Context, *CreateConsumerGroupRequest) (*CreateConsumerGroupResponse, error)
+	AddConsumer(context.Context, *AddConsumerRequest) (*AddConsumerResponse, error)
 	ListConsumerGroups(context.Context, *ListConsumerGroupsRequest) (*ListConsumerGroupsResponse, error)
 	mustEmbedUnimplementedStreamWeaverBrokerServer()
 }
@@ -95,6 +106,9 @@ func (UnimplementedStreamWeaverBrokerServer) GetStream(context.Context, *GetStre
 }
 func (UnimplementedStreamWeaverBrokerServer) CreateConsumerGroup(context.Context, *CreateConsumerGroupRequest) (*CreateConsumerGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateConsumerGroup not implemented")
+}
+func (UnimplementedStreamWeaverBrokerServer) AddConsumer(context.Context, *AddConsumerRequest) (*AddConsumerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddConsumer not implemented")
 }
 func (UnimplementedStreamWeaverBrokerServer) ListConsumerGroups(context.Context, *ListConsumerGroupsRequest) (*ListConsumerGroupsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListConsumerGroups not implemented")
@@ -166,6 +180,24 @@ func _StreamWeaverBroker_CreateConsumerGroup_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StreamWeaverBroker_AddConsumer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddConsumerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamWeaverBrokerServer).AddConsumer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/broker.StreamWeaverBroker/AddConsumer",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamWeaverBrokerServer).AddConsumer(ctx, req.(*AddConsumerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _StreamWeaverBroker_ListConsumerGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListConsumerGroupsRequest)
 	if err := dec(in); err != nil {
@@ -202,6 +234,10 @@ var StreamWeaverBroker_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateConsumerGroup",
 			Handler:    _StreamWeaverBroker_CreateConsumerGroup_Handler,
+		},
+		{
+			MethodName: "AddConsumer",
+			Handler:    _StreamWeaverBroker_AddConsumer_Handler,
 		},
 		{
 			MethodName: "ListConsumerGroups",
