@@ -184,6 +184,8 @@ func (x *Stream) GetRetentionOptions() *StreamRetentionOptions {
 	return nil
 }
 
+// *
+// CreateStreamRequest represents a request to create a new stream
 type CreateStreamRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -239,12 +241,14 @@ func (x *CreateStreamRequest) GetRetentionOptions() *StreamRetentionOptions {
 	return nil
 }
 
+// *
+// CreateStreamResponse represents a response to a CreateStreamRequest
 type CreateStreamResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Status       string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`                                 // OK or ERROR
+	Status       string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
 	ErrorMessage string `protobuf:"bytes,2,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"` // If status is not OK
 }
 
