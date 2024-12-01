@@ -32,6 +32,8 @@ type StreamWeaverBrokerClient interface {
 	AddConsumer(ctx context.Context, in *AddConsumerRequest, opts ...grpc.CallOption) (*AddConsumerResponse, error)
 	// List consumer groups for a stream
 	ListConsumerGroups(ctx context.Context, in *ListConsumerGroupsRequest, opts ...grpc.CallOption) (*ListConsumerGroupsResponse, error)
+	// Publish messages to a stream
+	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 }
 
 type streamWeaverBrokerClient struct {
@@ -87,6 +89,15 @@ func (c *streamWeaverBrokerClient) ListConsumerGroups(ctx context.Context, in *L
 	return out, nil
 }
 
+func (c *streamWeaverBrokerClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error) {
+	out := new(PublishResponse)
+	err := c.cc.Invoke(ctx, "/broker.StreamWeaverBroker/Publish", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StreamWeaverBrokerServer is the server API for StreamWeaverBroker service.
 // All implementations must embed UnimplementedStreamWeaverBrokerServer
 // for forward compatibility
@@ -101,6 +112,8 @@ type StreamWeaverBrokerServer interface {
 	AddConsumer(context.Context, *AddConsumerRequest) (*AddConsumerResponse, error)
 	// List consumer groups for a stream
 	ListConsumerGroups(context.Context, *ListConsumerGroupsRequest) (*ListConsumerGroupsResponse, error)
+	// Publish messages to a stream
+	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 	mustEmbedUnimplementedStreamWeaverBrokerServer()
 }
 
@@ -122,6 +135,9 @@ func (UnimplementedStreamWeaverBrokerServer) AddConsumer(context.Context, *AddCo
 }
 func (UnimplementedStreamWeaverBrokerServer) ListConsumerGroups(context.Context, *ListConsumerGroupsRequest) (*ListConsumerGroupsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListConsumerGroups not implemented")
+}
+func (UnimplementedStreamWeaverBrokerServer) Publish(context.Context, *PublishRequest) (*PublishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
 }
 func (UnimplementedStreamWeaverBrokerServer) mustEmbedUnimplementedStreamWeaverBrokerServer() {}
 
@@ -226,6 +242,24 @@ func _StreamWeaverBroker_ListConsumerGroups_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StreamWeaverBroker_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StreamWeaverBrokerServer).Publish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/broker.StreamWeaverBroker/Publish",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StreamWeaverBrokerServer).Publish(ctx, req.(*PublishRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StreamWeaverBroker_ServiceDesc is the grpc.ServiceDesc for StreamWeaverBroker service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -252,6 +286,10 @@ var StreamWeaverBroker_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListConsumerGroups",
 			Handler:    _StreamWeaverBroker_ListConsumerGroups_Handler,
+		},
+		{
+			MethodName: "Publish",
+			Handler:    _StreamWeaverBroker_Publish_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
